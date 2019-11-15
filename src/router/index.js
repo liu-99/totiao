@@ -6,7 +6,14 @@ Vue.use(VueRouter)
 const routes = [
   // @别名 代表src绝对路径
   { path: '/login', name: 'login', component: () => import('@/views/login') },
-  { path: '/home', name: 'home', component: () => import('@/views/home') }
+  { path: '/home',
+    name: 'home',
+    component: () => import('@/views/home'),
+    redirect: '/welcome',
+    children: [
+      { path: '/welcome', name: 'welcome', component: () => import('@/views/welcome') }
+    ]
+  }
 ]
 
 const router = new VueRouter({
